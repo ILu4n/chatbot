@@ -1,14 +1,14 @@
 const chatBox = document.getElementById("chat-box");
 const input = document.getElementById("user-input");
 const btn = document.getElementById("send-btn");
+let primeiraMensagemEnviada = false;
 
-// Função para adicionar mensagens ao chat com os estilos antigos
 function adicionarMensagemAoChat(remetente, mensagem, tipo) {
     const messageElement = document.createElement("div");
-    messageElement.classList.add("message", tipo); 
-
+    messageElement.classList.add("message", tipo);
+    
     const textElement = document.createElement("p");
-    textElement.textContent = mensagem;
+    textElement.innerHTML = mensagem;
 
     messageElement.appendChild(textElement);
     chatBox.appendChild(messageElement);
@@ -16,19 +16,21 @@ function adicionarMensagemAoChat(remetente, mensagem, tipo) {
     chatBox.scrollTop = chatBox.scrollHeight;
 }
 
-// Função para enviar a mensagem para a API
 async function enviarMensagem() {
     const mensagemDoUsuario = input.value.trim();
     if (!mensagemDoUsuario) return;
 
-    // Adiciona a mensagem do usuário ao chat com os estilos antigos
+    if (!primeiraMensagemEnviada) {
+        const bemVindoElemento = document.querySelector(".bem-vindo");
+        if (bemVindoElemento) bemVindoElemento.remove();
+        primeiraMensagemEnviada = true;
+    }
+
     adicionarMensagemAoChat("Você", mensagemDoUsuario, "user");
     input.value = "";
 
-    // Adiciona o loader no chat
     const loaderId = addChaoticOrbitLoader();
 
-    // Estrutura do corpo da requisição para a API
     const requestBody = {
         prompt: mensagemDoUsuario,
         service: "merlin-v1",
@@ -38,10 +40,7 @@ async function enviarMensagem() {
         websearch: false
     };
 
-    console.log("🔹 Enviando requisição para a API com body:", requestBody);
-
     try {
-        // Envia a mensagem para a API
         const response = await fetch('https://stec.cx/saturn/single.php', {
             method: 'POST',
             headers: {
@@ -51,23 +50,22 @@ async function enviarMensagem() {
             body: JSON.stringify(requestBody)
         });
 
-        console.log("🔹 Status HTTP da resposta:", response.status);
-
         if (!response.ok) {
             const errorText = await response.text();
             throw new Error(`Erro na requisição: ${response.status} - ${errorText}`);
         }
 
         const dados = await response.json();
-        console.log("🔹 Resposta da API:", dados);
-
         if (dados.error) {
             throw new Error(`Erro da API: ${dados.error}`);
         }
 
-        // Remove o loader e adiciona a resposta do assistente sem "response:"
         removeChaoticOrbitLoader(loaderId);
-        adicionarMensagemAoChat("Assistente", dados.response ? dados.response.replace(/^{"response":"|"}$/g, '') : "Sem resposta da API", "bot");
+        
+        // Extração correta do conteúdo sem "response":
+        let respostaLimpa = dados.response ? dados.response.replace(/^\{"response":"|"\}$/g, "").replace(/\n/g, "<br>").replace(/\*\*/g, "").replace(/\\/g, "") : "Sem resposta da API";
+        
+        adicionarMensagemAoChat("Assistente", respostaLimpa, "bot");
     } catch (erro) {
         console.error("❌ Erro:", erro);
         removeChaoticOrbitLoader(loaderId);
@@ -75,36 +73,48 @@ async function enviarMensagem() {
     }
 }
 
-// Evento de clique no botão de enviar
 btn.addEventListener("click", enviarMensagem);
-
-// envio ao pressionar "Enter"
 input.addEventListener("keypress", (evento) => {
     if (evento.key === "Enter") {
         enviarMensagem();
     }
 });
 
-// Função para adicionar um loader de carregamento no chat
 function addChaoticOrbitLoader() {
     const loaderId = `loader-${Date.now()}`;
-
     const loaderDiv = document.createElement("div");
-    loaderDiv.classList.add("message", "bot"); // Mantendo o estilo de resposta do bot
+    loaderDiv.classList.add("message", "bot");
     loaderDiv.id = loaderId;
-
-    loaderDiv.innerHTML = `
-        <p>⏳ Carregando...</p>
-    `;
-
+    loaderDiv.innerHTML = `<p>⏳ Carregando...</p>`;
     chatBox.appendChild(loaderDiv);
     chatBox.scrollTop = chatBox.scrollHeight;
-
     return loaderId;
 }
 
-// Função para remover o loader do chat
 function removeChaoticOrbitLoader(loaderId) {
     const loaderDiv = document.getElementById(loaderId);
     if (loaderDiv) loaderDiv.remove();
+}
+
+const bemVindoElemento = document.querySelector(".bem-vindo");
+const mensagemBoasVindas = 
+    "👋 Bem-vindo ao LexBot!<br>" +
+    "📜 Sou um assistente jurídico pronto para esclarecer suas dúvidas sobre leis, direitos e regulamentos.<br>" +
+    "✍️ Digite sua pergunta no chat e eu responderei da melhor forma possível.";
+
+bemVindoElemento.innerHTML = "";
+digitarTextoHTML(bemVindoElemento, mensagemBoasVindas, 10);
+
+function digitarTextoHTML(elemento, texto, velocidade) {
+    let index = 0;
+    function digitar() {
+        if (index < texto.length) {
+            elemento.innerHTML = texto.slice(0, index + 1);
+            index++;
+            setTimeout(digitar, velocidade);
+        } else {
+            elemento.style.borderRight = "none"; 
+        }
+    }
+    digitar();
 }

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LexBot - Seu Assistente Jurídico Virtual</title>
+    <link rel="stylesheet" href="./css/page.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parse/3.4.1/parse.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="container nav">
+            <div class="logo">LexBot</div>
+            <nav class="nav-links">
+                <a href="#features">Recursos</a>
+                <a href="#how-it-works">Como Funciona</a>
+                <a href="#testimonials">Depoimentos</a>
+                <a href="#" class="btn btn-primary" onclick="openModal()">Experimentar</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container hero-content">
+            <div>
+                <h1>Seu Assistente Jurídico Inteligente</h1>
+                <p>Tire suas dúvidas jurídicas instantaneamente com nosso chatbot especializado em direito. Disponível 24/7 para ajudar você.</p>
+                <a href="#" class="btn btn-primary" onclick="openModal()">Experimentar Gratuitamente</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Por que escolher o LexBot?</h2>
+                <p>Descubra como podemos ajudar você a resolver suas questões jurídicas</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⚖️</div>
+                    <h3>Respostas Precisas</h3>
+                    <p>Base de conhecimento atualizada com as últimas legislações e jurisprudências</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Resposta Instantânea</h3>
+                    <p>Obtenha respostas para suas dúvidas jurídicas em segundos</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Segurança</h3>
+                    <p>Suas informações são tratadas com total confidencialidade</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <div class="section-title">
+                <h2>Como Funciona</h2>
+                <p>Três passos simples para começar</p>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="feature-icon">1️⃣</div>
+                    <h3>Cadastre-se</h3>
+                    <p>Preencha o formulário com seus dados básicos</p>
+                </div>
+                <div class="step">
+                    <div class="feature-icon">2️⃣</div>
+                    <h3>Faça sua Pergunta</h3>
+                    <p>Digite sua dúvida jurídica no chat</p>
+                </div>
+                <div class="step">
+                    <div class="feature-icon">3️⃣</div>
+                    <h3>Receba a Resposta</h3>
+                    <p>Obtenha orientação jurídica instantânea</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>O que dizem nossos usuários</h2>
+                <p>Depoimentos de advogados que já utilizam o LexBot</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        "O LexBot revolucionou minha forma de trabalhar. Consigo resolver dúvidas rapidamente e com precisão."
+                    </div>
+                    <div class="testimonial-author">
+                        <div>
+                            <strong>Dr. Carlos Silva</strong>
+                            <p>Advogado Tributarista</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        "Excelente ferramenta para consultas rápidas. Economizo muito tempo nas pesquisas jurídicas."
+                    </div>
+                    <div class="testimonial-author">
+                        <div>
+                            <strong>Dra. Ana Paula</strong>
+                            <p>Advogada Trabalhista</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        "Indispensável para o dia a dia do escritório. Recomendo para todos os colegas advogados."
+                    </div>
+                            <strong>Dr. Marcos Santos</strong>
+                            <p>Advogado Civilista</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="leadModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+            <h2>Experimente o LexBot</h2>
+            <p>Preencha seus dados para começar a usar</p>
+            <form id="leadForm" onsubmit="handleSubmit(event)">
+                <div class="form-group">
+                    <label for="name">Nome</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="telefone">Número de telefone</label>
+                    <input type="text" id="telefone" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%">Começar</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-links">
+                <h3>LexBot</h3>
+                <p>Seu assistente jurídico inteligente disponível 24 horas por dia, 7 dias por semana.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Links Úteis</h3>
+                <ul>
+                    <li><a href="#features">Recursos</a></li>
+                    <li><a href="#how-it-works">Como Funciona</a></li>
+                    <li><a href="#testimonials">Depoimentos</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Contato</h3>
+                <ul>
+                    <li><a href="mailto:contato@lexbot.com">contato@lexbot.com</a></li>
+                    <li><a href="tel:+55929999999">(92) 9999-9999</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./js/script.js"></script>
+
+</body>
+</html>
