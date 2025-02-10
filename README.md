@@ -2,7 +2,47 @@
 
 O **LexBot** é um assistente jurídico inteligente desenvolvido para ajudar usuários a esclarecer dúvidas sobre leis, direitos e regulamentos. Com uma interface simples e integração com uma API externa, o LexBot oferece respostas rápidas e precisas para suas perguntas jurídicas.
 
-## 🚀 Começando
+## 🚀 Como Usar
+
+O **LexBot** foi projetado para ser simples e intuitivo. Antes de acessar o assistente jurídico, você precisará realizar um rápido cadastro. Siga os passos abaixo para começar:
+
+### **Passo 1: Acesse o Chatbot**
+- Abra o arquivo `index.html` no seu navegador. Isso pode ser feito clicando duas vezes no arquivo ou arrastando-o para uma janela do navegador.
+
+### **Passo 2: Realize o Cadastro**
+- Na tela inicial, você verá um formulário de cadastro.
+- Preencha os campos obrigatórios, como nome, e-mail e numero de telefone.
+- Clique no botão **Começar** para prosseguir.
+
+### **Passo 3: Acesse o Chatbot**
+- Após o cadastro, você será redirecionado automaticamente para a interface do LexBot.
+
+### **Passo 4: Interaja com o LexBot**
+- No campo de texto na parte inferior da tela, digite sua pergunta relacionada a leis, direitos ou regulamentos.
+- Pressione **Enter** ou clique no botão **Enviar** para enviar sua mensagem.
+
+### **Passo 5: Aguarde a Resposta**
+- O LexBot processará sua pergunta e exibirá uma resposta na tela. Enquanto isso, um indicador de carregamento será mostrado.
+
+### **Passo 6: Continue a Conversa**
+- Você pode fazer quantas perguntas quiser. O LexBot está pronto para ajudar com dúvidas jurídicas de forma contínua.
+
+### **Dicas para Melhores Respostas**
+- Seja claro e específico em suas perguntas.
+- Evite perguntas muito amplas ou vagas.
+- Caso a resposta não seja satisfatória, reformule sua pergunta ou forneça mais detalhes.
+
+### **Exemplo de Uso**
+1. **Usuário**: "Quais são meus direitos em caso de demissão sem justa causa?"
+2. **LexBot**: "Em caso de demissão sem justa causa, o trabalhador tem direito a..."
+3. **Usuário**: "E se eu não receber o aviso prévio?"
+4. **LexBot**: "Caso o aviso prévio não seja concedido, o empregador deve indenizar o trabalhador com..."
+
+---
+
+Pronto! Agora você está preparado para usar o LexBot e tirar suas dúvidas jurídicas de forma rápida e eficiente.
+
+## 👏 Começando
 
 Siga estas instruções para configurar e executar o projeto em sua máquina local.
 
